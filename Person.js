@@ -10,6 +10,10 @@ Object.defineProperty(Person.prototype, "name", {
         return this._name;
 }})
 
+Person.prototype.getData = function() {
+    return this._birthData;
+}
+
 Object.defineProperty(Person.prototype, "birthDate", {
     get: function () {
         console.log("Год:" + this._birthData.getFullYear() +
