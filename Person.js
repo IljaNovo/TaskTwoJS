@@ -1,4 +1,5 @@
-function Person (name, birthDateStr) {
+function Person(name, birthDateStr) {
+    validData(birthDateStr);
     this._name = name;
     this._birthData = new Date();
     parseBirthDate(this._birthData, birthDateStr);
@@ -6,20 +7,22 @@ function Person (name, birthDateStr) {
 }
 
 Object.defineProperty(Person.prototype, "name", {
-    get: function () {
+    get: function() {
         return this._name;
-}})
+    }
+})
 
 Person.prototype.getData = function() {
     return this._birthData;
 }
 
 Object.defineProperty(Person.prototype, "birthDate", {
-    get: function () {
+    get: function() {
         console.log("Год:" + this._birthData.getFullYear() +
-                " Месяц: " + (this._birthData.getMonth() + 1) +
-                " День: " + this._birthData.getDate());
-}})
+            " Месяц: " + (this._birthData.getMonth() + 1) +
+            " День: " + this._birthData.getDate());
+    }
+})
 
 Person.prototype.addAccount = function(account) {
     this._accounts.push(account);
@@ -34,4 +37,12 @@ function parseBirthDate(birthDate, dateStr) {
     birthDate.setFullYear(Number(dayMonthYear[0]));
     birthDate.setMonth(Number(dayMonthYear[1]) - 1);
     birthDate.setDate(Number(dayMonthYear[2]));
+}
+
+function validData(dateStr) {
+    var dayMonthYear = dateStr.split("/");
+    if (dayMonthYear[0] < 1 || dayMonthYear[1] < 1 ||
+       dayMonthYear[2] < 1) {
+        throw "invalid Data";
+    }
 }

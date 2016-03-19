@@ -2,7 +2,7 @@ function Account (accountName) {
     this._accountName = accountName;
     this._person = undefined;
     this._lastOperation = "no operations";
-    this._balance = 0;
+    this._balance = 0.0;
     this._isActivated = false;
 }
 
@@ -34,7 +34,7 @@ Object.defineProperty(Account.prototype, 'balance', {
         return this._balance;
     },
     set: function(balance) {
-        if (balance <= 0) {
+        if (balance < 0.0) {
             throw "Negative balance";
         }
         this._balance = balance;
